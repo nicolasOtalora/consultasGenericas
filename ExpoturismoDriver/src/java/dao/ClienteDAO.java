@@ -43,6 +43,7 @@ public class ClienteDAO {
             statement.setInt(4, cliente.getTelefono());
             //--------------------------------------
             //3. Hacer la ejecucion
+            System.out.println("metió");
             resultado = statement.execute();
 
         } catch (SQLException ex) {
@@ -52,9 +53,9 @@ public class ClienteDAO {
         return resultado;
     }
     
-    public ArrayList<ClienteVO> listarTodo(){
+    public ArrayList listarTodo(){
        //1.Consulta
-       ArrayList<ClienteVO> respuesta = new ArrayList();
+       ArrayList respuesta = new ArrayList();
        String consulta ="SELECT * FROM Clientes";
         try {
             //----------------------------
@@ -67,12 +68,20 @@ public class ClienteDAO {
             //----------------------------
             //Recorrido sobre el resultado
             while(resultado.next()){
-               ClienteVO cliente = new ClienteVO();
-               cliente.setCedula(resultado.getInt("Cedula"));
-               cliente.setNombre(resultado.getString("NombreCliente"));
-               cliente.setEmail(resultado.getString("Email"));
-               cliente.setTelefono(resultado.getInt("Telefono"));
-               respuesta.add(cliente);
+                int cedula = resultado.getInt("Cedula");
+                respuesta.add(cedula);
+                String nombre = resultado.getString("NombreCliente");
+                respuesta.add(nombre);
+                String email = resultado.getString("Email");
+                respuesta.add(email);
+                int telefono = resultado.getInt("Telefono");
+                respuesta.add(telefono);
+//               ClienteVO cliente = new ClienteVO();
+//               cliente.setCedula(resultado.getInt("Cedula"));
+//               cliente.setNombre(resultado.getString("NombreCliente"));
+//               cliente.setEmail(resultado.getString("Email"));
+//               cliente.setTelefono(resultado.getInt("Telefono"));
+//               respuesta.add(cliente);
             }
             
         } catch (SQLException ex) {
