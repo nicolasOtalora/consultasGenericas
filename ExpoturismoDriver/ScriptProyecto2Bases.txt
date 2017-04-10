@@ -1,0 +1,96 @@
+DROP DATABASE IF EXISTS Proyecto;
+
+CREATE DATABASE Proyecto;
+
+USE Proyecto;
+
+
+CREATE TABLE Clientes(
+	
+	Cedula int(4) NOT NULL,
+    
+	NombreCliente varchar(20) NOT NULL,
+    
+	Email varchar(20) NOT NULL,
+    
+	Telefono int(10) NOT NULL,
+    
+	PRIMARY KEY (Cedula)
+
+);
+
+
+
+CREATE TABLE Usuarios (
+	
+	IdUsuario int(4) NOT NULL,
+
+    	Usuario varchar(20) NOT NULL,
+    
+	Contrasena varchar(20) NOT NULL,
+    
+	PRIMARY KEY (IdUsuario)
+
+);
+
+
+
+CREATE TABLE Programas (
+
+	IdPrograma int(4) NOT NULL,
+
+ 	NombrePrograma varchar(20) NOT NULL,
+
+    	Precio double NOT NULL,
+
+    	PRIMARY KEY (IdPrograma)
+
+);
+
+
+
+CREATE TABLE Viajes (
+
+	Cedula int(4) NOT NULL,
+
+    	IdPrograma int(4) NOT NULL,
+
+    	Fecha date NOT NULL,
+
+    	CantidadPersonas int(2) NOT NULL,
+
+    	FOREIGN KEY (Cedula) REFERENCES Clientes (Cedula),
+
+    	FOREIGN KEY (IdPrograma) REFERENCES Programas (IdPrograma)
+
+);
+
+
+
+CREATE TABLE Recordatorios (
+
+	IdRecordatorios int(4) NOT NULL,
+
+    	FechaRecordatorios date NOT NULL,
+
+    	Hora time NOT NULL,
+
+    	Descripcion varchar(200),
+
+    	PRIMARY KEY (IdRecordatorios)
+
+);
+
+
+
+CREATE TABLE CrearRecordatorio (
+
+	IdUsuario int(4) NOT NULL,
+
+    	IdRecordatorios int(4) NOT NULL,
+
+    	FOREIGN KEY (IdUsuario) REFERENCES Usuarios(IdUsuario),
+
+    	FOREIGN KEY (IdRecordatorios) REFERENCES Recordatorios(IdRecordatorios)
+
+);
