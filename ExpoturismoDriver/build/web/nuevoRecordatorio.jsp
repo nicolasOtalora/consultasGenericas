@@ -12,7 +12,7 @@
         <title>JSP Page</title>
         <style>
             body {
-                background-image: url(London.jpg);
+                background-image: url(Barcelona.jpg);
                 background-repeat: no-repeat;
                 background-size: cover;
                 margin: 0;
@@ -35,18 +35,21 @@
             
             .form{
                 text-align: center;
-                margin-left: 340px;
-                color: #ffffff;
-            }
-            
-            .borrar{
-                text-align: center;
-            }
-            
-            .fForm{
-                text-align: center;
                 margin-left: 370px;
-                color: #ffffff;
+                font-weight: bold;
+            }
+            
+            .editar{
+                text-align: center;
+            }
+            
+            .buscar{
+                width: 490px;
+            }
+            
+            .confC{
+                margin-left: 90px;
+                padding-left: 50px;
             }
             
             .btn {
@@ -117,66 +120,38 @@
                 -moz-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
                 -o-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
                 transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
-            }
+}
+
+            
         </style>    
     </head>
     <body>
         <div class="logo"><image src="logo_pagina.png"/></div>
-        <div class="title"><h2>BUSCAR CLIENTE</h2></div><br>
-        <%if(request.getAttribute("mensaje") == "ok"){%>
-            <script>alert("Cliente borrado");</script>
-        <%}else if(request.getAttribute("mensaje") == "error"){%>
-            <script>alert("No se pudo borrar");</script>
-        <%}%>
-        <div class="subtitle"><h3>Ingrese la cedula del cliente:</h3></div><br>
-        <div class="fForm">
-            <table >
-                <tr>
-                    <form action="ServletBB" method="GET" id="searchndestroy">
-                        <td>
-                            <input class="enjoy-input" type="text" name="busqueda">
-                        </td>
-                        <td>
-                            <input class="btn" name="operacion" type="submit" value="Buscar" form="searchndestroy" class="formulario">
-                            <%
-                                String cc = (String)request.getAttribute("cedula");
-                                String name = (String)request.getAttribute("nombre");
-                                String correo = (String)request.getAttribute("email");
-                                String tel = (String)request.getAttribute("telefono");
-                              %>
-                            
-                        </td>
-                    </form>
-                    <td style="padding-left: 150px">
-                        <form action="ListarClienteServlet" method="GET">
-                            <input class="btn" type="submit" value="Listar a todos los clientes">
-                        </form>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <br><br>
+        <div class="title"><h2>NUEVO RECORDATORIO</h2></div><br>
         <div class="form">
             <table text-align="center">
                 <tr>
                     <td>
-                        NOMBRE: <input class="enjoy-input" type="text" name="nombre" form="searchndestroy" <%if(name != null){%>value="<%=name%>"<%}%>><br><br>
-                        CEDULA: <input class="enjoy-input" type="text" name="cedula" form="searchndestroy"<%if(cc != null){%>value="<%=cc%>"<%}%>><br><br>
-                    </td>
-                    <td style="padding-left: 50px">
-                            EMAIL: <input class="enjoy-input" type="text" name="email" form="searchndestroy"<%if(correo != null){%>value="<%=correo%>"<%}%>><br><br>
-                            TELÉFONO: <input class="enjoy-input" type="text" name="telefono" form="searchndestroy"<%if(tel != null){%>value="<%=tel%>"<%}%>><br><br>
+                        <form action="ServletNewU" method="POST" id="newR">
+                            <div class="description">DESCRIPCIÓN: <input style="width: 440px" class="enjoy-input" type="text" name="descr"></div><br>
+                        </form>
                     </td>
                 </tr>
+            </table>
+            <table text-align="center">
                 <tr>
                     <td>
-                        <div class="borrar">
-                                <input style="margin-left: 300px" name="operacion" class="btn" type="submit" value="Borrar" class="formulario" form="searchndestroy">
-                        </div>
+                        FECHA: <input class="enjoy-input" type="text" name="date" form="newR"><br><br>
+                    </td>
+                    <td>
+                        HORA: <input class="enjoy-input" type="text" name="hour" form="newR"><br><br
                     </td>
                 </tr>
-                
             </table>
+        </div><br><br>
+        <div class="editar">
+            <input class="btn" type="submit" value="Añadir Recordatorio" form="newR">
         </div>
+        
     </body>
 </html>

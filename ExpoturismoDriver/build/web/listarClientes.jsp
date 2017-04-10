@@ -4,6 +4,7 @@
     Author     : PC USUARIO
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,7 +13,7 @@
         <title>JSP Page</title>
         <style>
             body {
-                background-image: url(London.jpg);
+                background-image: url(Dubai.jpg);
                 background-repeat: no-repeat;
                 background-size: cover;
                 margin: 0;
@@ -35,18 +36,36 @@
             
             .form{
                 text-align: center;
-                margin-left: 340px;
-                color: #ffffff;
-            }
-            
-            .borrar{
-                text-align: center;
-            }
-            
-            .fForm{
-                text-align: center;
                 margin-left: 370px;
-                color: #ffffff;
+                font-weight: bold;
+            }
+            
+            .editar{
+                text-align: center;
+            }
+            
+            .buscar{
+                width: 490px;
+            }
+            
+            .confC{
+                margin-left: 90px;
+                padding-left: 50px;
+            }
+            
+            .tabla {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 60%;
+                margin-left: 290px;
+            }
+            .tabla td, th {
+                border: 5px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+            .tabla tr:nth-child(even) {
+                background-color: #dddddd;
             }
             
             .btn {
@@ -66,7 +85,6 @@
                 padding: 10px 20px 10px 20px;
                 text-decoration: none;
             }
-
             .btn:hover {
                 background: #3cb0fd;
                 background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
@@ -99,7 +117,6 @@
                 -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
                 transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
             }
-
             .enjoy-input:hover {
                 border: 1px solid #a3a3a3;
                 background: rgba(255,255,255,1);
@@ -108,7 +125,6 @@
                 -o-transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1);
                 transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1);
             }
-
             .enjoy-input:focus {
                 border: 1px solid #018dc4;
                 -webkit-box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2) inset;
@@ -118,64 +134,42 @@
                 -o-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
                 transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
             }
+            
+            .divT{
+                display: inline-block;
+                text-align: center;
+                height: 300px;
+                color: #ffffff;
+                overflow: auto;
+                width: 900px;
+                margin-left: 400px;
+            }
+            
         </style>    
     </head>
     <body>
         <div class="logo"><image src="logo_pagina.png"/></div>
-        <div class="title"><h2>BUSCAR CLIENTE</h2></div><br>
-        <%if(request.getAttribute("mensaje") == "ok"){%>
-            <script>alert("Cliente borrado");</script>
-        <%}else if(request.getAttribute("mensaje") == "error"){%>
-            <script>alert("No se pudo borrar");</script>
-        <%}%>
-        <div class="subtitle"><h3>Ingrese la cedula del cliente:</h3></div><br>
-        <div class="fForm">
-            <table >
+        <div class="title"><h2>LISTA DE CLIENTES</h2></div><br>
+        <div class="divT">
+            <table class="tabla">
                 <tr>
-                    <form action="ServletBB" method="GET" id="searchndestroy">
-                        <td>
-                            <input class="enjoy-input" type="text" name="busqueda">
-                        </td>
-                        <td>
-                            <input class="btn" name="operacion" type="submit" value="Buscar" form="searchndestroy" class="formulario">
-                            <%
-                                String cc = (String)request.getAttribute("cedula");
-                                String name = (String)request.getAttribute("nombre");
-                                String correo = (String)request.getAttribute("email");
-                                String tel = (String)request.getAttribute("telefono");
-                              %>
-                            
-                        </td>
-                    </form>
-                    <td style="padding-left: 150px">
-                        <form action="ListarClienteServlet" method="GET">
-                            <input class="btn" type="submit" value="Listar a todos los clientes">
-                        </form>
-                    </td>
+                    <th>Cedula</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
                 </tr>
-            </table>
-        </div>
-        <br><br>
-        <div class="form">
-            <table text-align="center">
+                <%
+                    //ClienteDAO cliente = ClienteDAO.getClienteDAO();
+                    ArrayList registros = (ArrayList)request.getAttribute("registros");
+                    for (int i = 0; i < registros.size(); i+=4) {
+                %>
                 <tr>
-                    <td>
-                        NOMBRE: <input class="enjoy-input" type="text" name="nombre" form="searchndestroy" <%if(name != null){%>value="<%=name%>"<%}%>><br><br>
-                        CEDULA: <input class="enjoy-input" type="text" name="cedula" form="searchndestroy"<%if(cc != null){%>value="<%=cc%>"<%}%>><br><br>
-                    </td>
-                    <td style="padding-left: 50px">
-                            EMAIL: <input class="enjoy-input" type="text" name="email" form="searchndestroy"<%if(correo != null){%>value="<%=correo%>"<%}%>><br><br>
-                            TELÉFONO: <input class="enjoy-input" type="text" name="telefono" form="searchndestroy"<%if(tel != null){%>value="<%=tel%>"<%}%>><br><br>
-                    </td>
+                    <td><%=registros.get(i)%></td>
+                    <td><%=registros.get(i+1)%></td>
+                    <td><%=registros.get(i+2)%></td>
+                    <td><%=registros.get(i+3)%></td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="borrar">
-                                <input style="margin-left: 300px" name="operacion" class="btn" type="submit" value="Borrar" class="formulario" form="searchndestroy">
-                        </div>
-                    </td>
-                </tr>
-                
+                <%  }   %>
             </table>
         </div>
     </body>

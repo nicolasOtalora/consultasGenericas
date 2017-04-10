@@ -12,43 +12,46 @@
         <title>JSP Page</title>
         <style>
             body {
-                background-image: url(London.jpg);
+                background-image: url(Malta.jpg);
                 background-repeat: no-repeat;
                 background-size: cover;
                 margin: 0;
                 padding: 0;
             }
-            
+
             .logo{
                 text-align: right;
             }
-            
+
             .title{
                 text-align: center;
                 color: #ffffff;
             }
-            
+
             .subtitle{
                 color: #000000;
                 margin-left: 370px;
             }
-            
+
             .form{
                 text-align: center;
-                margin-left: 340px;
-                color: #ffffff;
+                margin-left: 150px;
+                font-weight: bold;
             }
-            
-            .borrar{
+
+            .editar{
                 text-align: center;
             }
-            
-            .fForm{
-                text-align: center;
-                margin-left: 370px;
-                color: #ffffff;
+
+            .buscar{
+                width: 490px;
             }
-            
+
+            .confC{
+                margin-left: 90px;
+                padding-left: 50px;
+            }
+
             .btn {
                 background: #3498db;
                 background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
@@ -76,7 +79,7 @@
                 background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
                 text-decoration: none;
             }
-            
+
             .enjoy-input {
                 display: inline-block;
                 -webkit-box-sizing: content-box;
@@ -122,61 +125,56 @@
     </head>
     <body>
         <div class="logo"><image src="logo_pagina.png"/></div>
-        <div class="title"><h2>BUSCAR CLIENTE</h2></div><br>
-        <%if(request.getAttribute("mensaje") == "ok"){%>
-            <script>alert("Cliente borrado");</script>
-        <%}else if(request.getAttribute("mensaje") == "error"){%>
-            <script>alert("No se pudo borrar");</script>
-        <%}%>
-        <div class="subtitle"><h3>Ingrese la cedula del cliente:</h3></div><br>
-        <div class="fForm">
-            <table >
-                <tr>
-                    <form action="ServletBB" method="GET" id="searchndestroy">
-                        <td>
-                            <input class="enjoy-input" type="text" name="busqueda">
-                        </td>
-                        <td>
-                            <input class="btn" name="operacion" type="submit" value="Buscar" form="searchndestroy" class="formulario">
-                            <%
-                                String cc = (String)request.getAttribute("cedula");
-                                String name = (String)request.getAttribute("nombre");
-                                String correo = (String)request.getAttribute("email");
-                                String tel = (String)request.getAttribute("telefono");
-                              %>
-                            
-                        </td>
-                    </form>
-                    <td style="padding-left: 150px">
-                        <form action="ListarClienteServlet" method="GET">
-                            <input class="btn" type="submit" value="Listar a todos los clientes">
-                        </form>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <br><br>
+        <div class="title"><h2>NUEVO USUARIO</h2></div><br>
         <div class="form">
             <table text-align="center">
                 <tr>
                     <td>
-                        NOMBRE: <input class="enjoy-input" type="text" name="nombre" form="searchndestroy" <%if(name != null){%>value="<%=name%>"<%}%>><br><br>
-                        CEDULA: <input class="enjoy-input" type="text" name="cedula" form="searchndestroy"<%if(cc != null){%>value="<%=cc%>"<%}%>><br><br>
+                        <form action="NuevoUsuarioServlet" method="GET" id="newU">
+                            <input class="btn" type="submit" value="Añadir Usuario" form="newU"><br><br>
+                            USUARIO: <input class="enjoy-input" type="text" name="nombre"<br><br><br>
+                            <div class="confC">CONFIRMAR CONTRASEÑA: <input class="enjoy-input" type="password" name="confPsw"></div><br><br>
+                        </form>
                     </td>
-                    <td style="padding-left: 50px">
-                            EMAIL: <input class="enjoy-input" type="text" name="email" form="searchndestroy"<%if(correo != null){%>value="<%=correo%>"<%}%>><br><br>
-                            TELÉFONO: <input class="enjoy-input" type="text" name="telefono" form="searchndestroy"<%if(tel != null){%>value="<%=tel%>"<%}%>><br><br>
+                    <td style="padding-left: 30px ; padding-bottom: 40px">
+                        CONTRASEÑA: <input class="enjoy-input" type="password" name="psw" form="newU"><br><br>
+                        ID: <input class="enjoy-input" type="text" name="id" form="newU"><br><br>
                     </td>
-                </tr>
-                <tr>
                     <td>
-                        <div class="borrar">
-                                <input style="margin-left: 300px" name="operacion" class="btn" type="submit" value="Borrar" class="formulario" form="searchndestroy">
-                        </div>
-                    </td>
-                </tr>
+                        QUIEN LO AGREGO: <input class="enjoy-input" type="text" name="agrego" form="newU"><br><br>
+                        
+                    </td><br><br>
                 
+                
+
+
+                </tr>
             </table>
+        </div><br><br>
+        <div class="editar">
+            
+            <form action="ListarUsuarioServlet" method="GET" id="listarU">
+                <input class="btn" type="submit" value="Listar Usuarios">
+            </form>
+            <%if (request.getAttribute("Mensaje") == "ok") {%>
+            <script>alert("Usuario creado!");</script> 
+            <%}%>
+            <% if (request.getAttribute("Mensaje1") == "no es numero") {%>
+
+            <script>alert("Error: el id debe ser un número.");</script>
+
+            <%} else if (request.getAttribute("Mensaje2") == "contraseñas diferentes") {%>
+
+
+            <script>alert("Error: las contraseñas no coinciden");</script>
+
+            <%} else if (request.getAttribute("Mensaje3") == "Error") {%>
+
+            <script>alert("Error al registrar el usuario. Asegúrese de llenar todos los campos corrrectamente");</script>
+
+            <%}%>
         </div>
+
+
     </body>
 </html>
