@@ -52,9 +52,9 @@ public class NuevoClienteServlet extends HttpServlet {
             boolean inserta = this.cliente.insertar(cvo);
             
             if (inserta) {
-                request.setAttribute("mesanje", "ok");
+                request.setAttribute("mesanje", "error");
             }else{
-                request.setAttribute("mensaje", "error");
+                request.setAttribute("mensaje", "ok");
             }
             request.getRequestDispatcher("nuevoCliente.jsp").forward(request, response);
         }
