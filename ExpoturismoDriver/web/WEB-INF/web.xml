@@ -20,6 +20,14 @@
         <servlet-name>NuevoClienteServlet</servlet-name>
         <servlet-class>controlador.NuevoClienteServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BorrarUsuarioServlet</servlet-name>
+        <servlet-class>controlador.BorrarUsuarioServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NuevoUsuarioServlet</servlet-name>
+        <servlet-class>controlador.NuevoUsuarioServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/IndexServlet</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>NuevoClienteServlet</servlet-name>
         <url-pattern>/NuevoClienteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrarUsuarioServlet</servlet-name>
+        <url-pattern>/BorrarUsuarioServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NuevoUsuarioServlet</servlet-name>
+        <url-pattern>/NuevoUsuarioServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

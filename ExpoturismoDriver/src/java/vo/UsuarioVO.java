@@ -10,6 +10,7 @@ package vo;
  * @author ayoro
  */
 public class UsuarioVO {
+
     private int id;
     private String user;
     private String password;
@@ -37,5 +38,5 @@ public class UsuarioVO {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
 }

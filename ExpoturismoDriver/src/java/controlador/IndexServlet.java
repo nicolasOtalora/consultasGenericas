@@ -5,12 +5,16 @@
  */
 package controlador;
 
+import dao.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import vo.UsuarioVO;
 
 /**
  *
@@ -30,17 +34,52 @@ public class IndexServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet IndexServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet IndexServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            int id;
+
+            try {
+                id = Integer.parseInt(request.getParameter("id"));
+            } catch (Exception e) {
+
+                request.setAttribute("Mensaje1", "no es numero");
+
+                id = 0;
+
+            }
+            
+            HttpSession session = request.getSession();
+            UsuarioVO user = (UsuarioVO) session.getAttribute("user");
+            
+            if(user == null){
+                
+                user = new UsuarioVO();
+                session.setAttribute("user", user);
+                
+            }
+            String name = request.getParameter("usuario");
+            String password = request.getParameter("contrasena");
+            user.setId(id);
+            user.setUser(name);
+            user.setPassword(password);
+            session.setAttribute("user", user);
+            UsuarioDAO dao = new UsuarioDAO();
+
+            if (!dao.loggear(user)|| id==0) {
+                System.out.println("No se pudo loggear");
+                request.setAttribute("Mensaje", "error");
+
+            } else {
+
+                System.out.println("OOOOKKKKKKKKKKKK");
+                request.setAttribute("Mensaje", "ok");
+                
+                
+
+            }
+
+            RequestDispatcher dispacher = request.getRequestDispatcher("index.jsp");
+            dispacher.forward(request, response);
         }
     }
 

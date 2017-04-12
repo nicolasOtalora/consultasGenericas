@@ -153,14 +153,11 @@
         <script>alert("Usuario borrado");</script>
         <%}%>
 
-            <%if (request.getAttribute("Mensaje") == "no existe") {%>
-            <script>alert("Error: El usuario no se encuentra en los registros.");</script>
-            <%}%>
-            <%if (request.getAttribute("Mensaje") == "no coinciden") {%>
-            <script>alert("Error: El nombre de usuario no coincide con el id.");</script>
-            <%}%>
-            <%if (request.getAttribute("Mensaje") == "contraseña incorrecta") {%>
-            <script>alert("Error: Contraseña de administrador incorrecta.");</script>
-            <%}%>
+        <%if (request.getAttribute("Mensaje") == "no existe") {%>
+        <script>alert("Error: El usuario no se encuentra en los registros.");</script>
+        <%}%>
+        <%if (request.getAttribute("Mensaje") == "contraseña incorrecta") {%>
+        <script>alert("Error: Contraseña de administrador incorrecta.");</script>
+        <%}%>
     </body>
 </html>

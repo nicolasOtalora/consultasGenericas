@@ -4,6 +4,7 @@
     Author     : PC USUARIO
 --%>
 
+<%@page import="vo.UsuarioVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -64,7 +65,12 @@
     <body>
         <br><br><br><br>
         <div class="logo"><image src="logo_pagina.png"/></div><br>
-        <div class="h4"><h3>Escoge una de las siguientes opciones:</h3></div><br><br>
+        
+         <%HttpSession mySession = request.getSession();
+         UsuarioVO vo = (UsuarioVO) mySession.getAttribute("user");
+         %>
+        
+        <div class="h4"><h3>Escoge una de las siguientes opciones, <%=vo.getUser()%> </h3></div><br><br>
         <div>
             <table>
                 <tr>
@@ -74,7 +80,7 @@
                         </form>
                     </td>
                 
-                    <td>
+                    <td> 
                         <form target="_blank" action="buscarCliente.jsp">
                                            <input class="btn" type="submit" value="Buscar Cliente">
                         </form>
