@@ -45,25 +45,6 @@ public class UsuarioDAO {
         return res;
     }
 
-    public boolean editarUsuario(UsuarioVO usuario) {
-        boolean res = false;
-        String query = "update Usuarios set Usuario = ? where IdUsuario = ?";
-
-        try {
-            PreparedStatement preparedStmt = this.conexion.prepareStatement(query);
-
-            preparedStmt.setString(1, usuario.getUser());
-            preparedStmt.setInt(2, usuario.getId());
-
-            if (preparedStmt.executeUpdate() > 0) {
-                res = true;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return res;
-    }
 
     public boolean editarPassword(UsuarioVO usuario) {
         boolean res = false;
