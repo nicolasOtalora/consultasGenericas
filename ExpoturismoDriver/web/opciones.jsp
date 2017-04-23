@@ -132,7 +132,7 @@
 
                 <li><a href=""><%=vo.getUser()%> </a>
                     <ul>
-                        <li><a href="">Perfil</a></li>
+                        <li><a href="editarUsuario.jsp">Cambiar Contraseña</a></li>
                         <li><a href="cerrarSesion.jsp">Cerrar Sesión</a></li>
                     </ul>
                 </li>
