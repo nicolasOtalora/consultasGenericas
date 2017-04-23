@@ -29,15 +29,19 @@ public class UsuarioDAO {
 
     public boolean insertar(UsuarioVO usuario) throws SQLException {
         boolean res = false;
-        System.out.println("iiinnnnsssseeeerrtaaaanndooooo");
+        try{
         String query = "INSERT INTO Usuarios VALUES (?,?,?)";
         PreparedStatement preparedStmt = this.conexion.prepareStatement(query);
 
         preparedStmt.setInt(1, usuario.getId());
         preparedStmt.setString(2, usuario.getUser());
         preparedStmt.setString(3, usuario.getPassword());
+        
         res = preparedStmt.execute();
-
+        }catch(SQLException e){
+            res = true;
+        }
+        System.out.println("reeeeeessssss" +res);
         return res;
     }
 

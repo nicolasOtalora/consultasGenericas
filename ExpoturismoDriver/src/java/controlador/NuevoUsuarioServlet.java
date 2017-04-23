@@ -4,6 +4,8 @@ import dao.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,12 +21,10 @@ import vo.UsuarioVO;
 public class NuevoUsuarioServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException{
         response.setContentType("text/html;charset=UTF-8");
-        System.out.println("hhheehehehehehehehehheheeheyyyyyyy");
 
         try (PrintWriter out = response.getWriter()) {
-            System.out.println("Entre al servlet de crear ");
             int id;
 
             try {
@@ -49,7 +49,7 @@ public class NuevoUsuarioServlet extends HttpServlet {
                 user.setPassword(password);
                 user.setUser(name);
 
-                if (dao.insertar(user)) {
+                if (!dao.insertar(user)) {
 
 
                     request.setAttribute("Mensaje", "ok");
@@ -77,6 +77,11 @@ public class NuevoUsuarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(NuevoUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -90,6 +95,11 @@ public class NuevoUsuarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(NuevoUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
