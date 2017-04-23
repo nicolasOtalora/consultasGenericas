@@ -20,19 +20,19 @@
                 margin: 0;
                 padding: 0;
             }
-            
+
             .logo{
                 text-align: center;
             }
-            
+
             input{
                 margin-right: 20px;
             }
-            
+
             .h4{
                 text-align: center;
             }
-            
+
             .btn {
                 background: #3498db;
                 background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
@@ -60,17 +60,91 @@
                 background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
                 text-decoration: none;
             }
+
+
+
+            #header {
+                margin-left:600px;
+                width:500px;
+                font-family:Arial;
+            }
+
+            ul {
+                list-style:none;
+            }
+
+           .nav > li {
+                float:right;
+            }
+
+            .nav li a {
+                background: #3498db;
+                color:#fff;
+                text-decoration:none;
+                padding:10px 12px;
+                display:block;
+                background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+                background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+                background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+                background-image: -o-linear-gradient(top, #3498db, #2980b9);
+                background-image: linear-gradient(to bottom, #3498db, #2980b9);
+                -webkit-border-radius: 28;
+                -moz-border-radius: 28;
+                border-radius: 28px;
+            }
+
+            .nav li a:hover {
+               background: #3cb0fd;
+                background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+                text-decoration: none;
+            }
+
+            .nav li ul {
+                display:none;
+                position:absolute;
+                min-width:100px;
+            }
+
+            .nav li:hover > ul {
+                display:block;
+            }
+
+            .nav li ul li {
+                position:relative;
+            }
+
+            
+
+
         </style>
     </head>
     <body>
+        <%HttpSession mySession = request.getSession();
+            UsuarioVO vo = (UsuarioVO) mySession.getAttribute("user");
+        %>
+        <div id="header">
+            <ul class="nav">
+
+
+                <li><a href=""><%=vo.getUser()%> </a>
+                    <ul>
+                        <li><a href="">Perfil</a></li>
+                        <li><a href="cerrarSesion.jsp">Cerrar Sesión</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
         <br><br><br><br>
         <div class="logo"><image src="logo_pagina.png"/></div><br>
+
         
-         <%HttpSession mySession = request.getSession();
-         UsuarioVO vo = (UsuarioVO) mySession.getAttribute("user");
-         %>
-        
-        <div class="h4"><h3>Escoge una de las siguientes opciones, <%=vo.getUser()%> </h3></div><br><br>
+
+        <div class="h4"><h3>Escoge una de las siguientes opciones</h3></div><br><br>
         <div>
             <table>
                 <tr>
@@ -79,31 +153,31 @@
                             <input class="btn" type="submit" value="Nuevo Cliente" style="margin-left: 200px">
                         </form>
                     </td>
-                
+
                     <td> 
                         <form target="_blank" action="buscarCliente.jsp">
-                                           <input class="btn" type="submit" value="Buscar Cliente">
+                            <input class="btn" type="submit" value="Buscar Cliente">
                         </form>
                     </td>
-                    
+
                     <td>
                         <form target="_blank" action="editarCliente.jsp">
                             <input class="btn" type="submit" value="Editar Cliente">
                         </form>
                     </td>
-                    
+
                     <td>
                         <form target="_blank" action="nuevoUsuario.jsp">
                             <input class="btn" type="submit" value="Nuevo Usuario">
                         </form>
                     </td>
-                    
+
                     <td>
                         <form target="_blank" action="nuevoRecordatorio.jsp">
                             <input class="btn" type="submit" value="Nuevo Recordatorio">
                         </form>
                     </td>
-                    
+
                     <td>
                         <form target="_blank" action="programas.jsp">
                             <input class="btn" type="submit" value="Programas">
