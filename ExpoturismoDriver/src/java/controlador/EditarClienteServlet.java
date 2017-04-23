@@ -34,6 +34,7 @@ public class EditarClienteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            this.cliente = new ClienteDAO();
             String ced = request.getParameter("cedula");
             if (ced == "") {
                 System.out.println("ENTROOOO");
