@@ -156,12 +156,7 @@
             <table text-align="center">
                 <tr>
                     <td>
-                        
-                            DESTINO: <input class="enjoy-input" type="text" name="destino"><br>
-                    </td>
-                
-                    <td>
-                        FECHA: <input class="enjoy-input" type="text" name="date" ><br>
+                        DESTINO: <input class="enjoy-input" type="text" name="destino"><br>
                     </td>
                     <td>
                         <input class="btn" type="submit" value="Buscar"><br>

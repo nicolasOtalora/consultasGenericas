@@ -148,4 +148,34 @@ public class ViajeDAO {
 
         return result;
     }
+    
+    public ArrayList <ViajeVO> getMatch(String destino){
+        ArrayList <ViajeVO> viajes = new ArrayList();
+        String query = "select * from Viajes where Destino = "+destino+" and CantidadPersonas = 0";
+        //Statement
+            Statement statement;
+        try {
+            statement = this.conexion.createStatement();
+            //Ejecucion
+            ResultSet resultado = statement.executeQuery(query);
+            
+            while (resultado.next()) {
+                int cedula = resultado.getInt("Cedula");
+                String des = resultado.getString("Destino");
+                int cantidadP = resultado.getInt("CantidadPersonas");
+                String fecha = resultado.getString("Fecha");
+                
+                ViajeVO v = new ViajeVO();
+                v.setCedulaCliente(cedula);
+                v.setDestino(destino);
+                v.setAcompanantes(cantidadP);
+                v.setFecha(fecha);
+                viajes.add(v);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ViajeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return viajes;
+    }
 }
