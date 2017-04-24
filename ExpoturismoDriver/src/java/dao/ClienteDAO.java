@@ -76,12 +76,6 @@ public class ClienteDAO {
                 respuesta.add(email);
                 int telefono = resultado.getInt("Telefono");
                 respuesta.add(telefono);
-//               ClienteVO cliente = new ClienteVO();
-//               cliente.setCedula(resultado.getInt("Cedula"));
-//               cliente.setNombre(resultado.getString("NombreCliente"));
-//               cliente.setEmail(resultado.getString("Email"));
-//               cliente.setTelefono(resultado.getInt("Telefono"));
-//               respuesta.add(cliente);
             }
             
         } catch (SQLException ex) {
