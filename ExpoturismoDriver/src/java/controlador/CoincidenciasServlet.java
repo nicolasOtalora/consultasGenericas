@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import dao.ClienteDAO;
 import dao.ViajeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import vo.ClienteVO;
 import vo.ViajeVO;
 
 /**
@@ -21,6 +23,7 @@ import vo.ViajeVO;
  */
 public class CoincidenciasServlet extends HttpServlet {
     private ViajeDAO viaje;
+    private ClienteDAO cliente;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,9 +39,34 @@ public class CoincidenciasServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             this.viaje = new ViajeDAO();
+            this.cliente = new ClienteDAO();
             String destino = request.getParameter("destino");
             ArrayList <ViajeVO> viajes = this.viaje.getMatch(destino);
+            ArrayList clientes = new ArrayList();
+            for (int i = 0; i < viajes.size(); i++) {
+                int cedula = viajes.get(i).getCedulaCliente();
+                ClienteVO c = this.cliente.buscar(cedula);
+                if (c != null) {
+                    clientes.add(cedula);
+                    String nombre = c.getNombre();
+                    clientes.add(nombre);
+                    String correo = c.getEmail();
+                    clientes.add(correo);
+                    int telefono = c.getTelefono();
+                    clientes.add(telefono);
+                    
+                }else{
+                    request.setAttribute("mensaje", "error");
+                }
+            }
             
+            if (clientes.size() > 0) {
+                request.setAttribute("lista", clientes);
+                request.setAttribute("mensaje", "ok");
+            }else{
+                request.setAttribute("mensaje", "sinCoincidencias");
+            }
+            request.getRequestDispatcher("coincidencias.jsp").forward(request, response);
         }
     }
 
