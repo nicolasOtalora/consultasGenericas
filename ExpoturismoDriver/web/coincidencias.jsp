@@ -180,6 +180,7 @@
                     <th>Email</th>
                     <th>Teléfono</th>
                 </tr>
+                <%if(lista != null){%>
                 <%for (int i = 0; i < lista.size(); i+=4) {%>
                 <tr>
                     <td><%=lista.get(i)%></td>
@@ -187,6 +188,7 @@
                     <td><%=lista.get(i+2)%></td>
                     <td><%=lista.get(i+3)%></td>
                 </tr>
+                <%}%>
                 <%}%>
             </table>
         </div>

@@ -131,8 +131,9 @@
         <div class="form">
             <table text-align="center">
                 <tr>
+                    <td>ID: <input type="text" name="id" form="newR"></td>
                     <td>
-                        <form action="ServletNewU" method="POST" id="newR">
+                        <form action="RecordatorioServlet" method="POST" id="newR">
                             <div class="description">DESCRIPCIÓN: <input style="width: 440px" class="enjoy-input" type="text" name="descr"></div><br>
                         </form>
                     </td>
