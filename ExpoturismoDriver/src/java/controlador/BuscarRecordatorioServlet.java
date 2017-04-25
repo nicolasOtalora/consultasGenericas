@@ -35,12 +35,6 @@ public class BuscarRecordatorioServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             this.recordatorio = new RecordatorioDAO();
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet BuscarRecordatorioServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
             
             int id = Integer.parseInt(request.getParameter("id"));
             RecordatorioVO rec = this.recordatorio.buscar(id);
@@ -50,7 +44,7 @@ public class BuscarRecordatorioServlet extends HttpServlet {
                 request.setAttribute("fecha", rec.getFechaRecordatorio());
                 request.setAttribute("hora", rec.getHora());
                 request.setAttribute("descripcion", rec.getDescripcion());
-                request.getRequestDispatcher("listarRecordatorios.jsp").forward(request, response);
+                request.getRequestDispatcher("buscarRecordatorios.jsp").forward(request, response);
             }else{
                 request.setAttribute("mensaje", "error");
             }

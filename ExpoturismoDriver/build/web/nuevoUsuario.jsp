@@ -130,32 +130,23 @@
             <table text-align="center">
                 <tr>
                     <td>
-                        <form action="NuevoUsuarioServlet" method="GET" id="newU">
-                            <input class="btn" type="submit" value="Añadir Usuario" form="newU"><br><br>
+                        <form action="NuevoUsuarioServlet" method="GET" id="newUser">
                             USUARIO: <input class="enjoy-input" type="text" name="nombre"<br><br><br>
                             <div class="confC">CONFIRMAR CONTRASEÑA: <input class="enjoy-input" type="password" name="confPsw"></div><br><br>
                         </form>
                     </td>
                     <td style="padding-left: 30px ; padding-bottom: 40px">
-                        CONTRASEÑA: <input class="enjoy-input" type="password" name="psw" form="newU"><br><br>
-                        ID: <input class="enjoy-input" type="text" name="id" form="newU"><br><br>
+                        CONTRASEÑA: <input class="enjoy-input" type="password" name="psw" form="newUser"><br><br>
+                        ID: <input class="enjoy-input" type="text" name="id" form="newUser"><br><br>
                     </td>
-                    <td>
-                        QUIEN LO AGREGO: <input class="enjoy-input" type="text" name="agrego" form="newU"><br><br>
-                        
-                    </td><br><br>
-                
-                
+
 
 
                 </tr>
             </table>
         </div><br><br>
         <div class="editar">
-            
-            <form action="ListarUsuarioServlet" method="GET" id="listarU">
-                <input class="btn" type="submit" value="Listar Usuarios">
-            </form>
+            <input class="btn" type="submit" value="Añadir Usuario" form="newUser">
             <%if (request.getAttribute("Mensaje") == "ok") {%>
             <script>alert("Usuario creado!");</script> 
             <%}%>
