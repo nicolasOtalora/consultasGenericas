@@ -34,7 +34,7 @@ public class RecordatorioDAO {
         boolean resultado = false;
         try {
             //1.Establecer la consulta
-            String consulta = "INSERT INTO Recordatorios VALUES(?,?,?,?)";
+            String consulta = "INSERT INTO Recordatorios VALUES(?,?,?,?,?)";
             //2. Crear el PreparedStament
             PreparedStatement statement
                     = this.conexion.prepareStatement(consulta);
@@ -43,6 +43,7 @@ public class RecordatorioDAO {
             statement.setString(2, recordatorio.getFechaRecordatorio());
             statement.setString(3, recordatorio.getHora());
             statement.setString(4, recordatorio.getDescripcion());
+            statement.setInt(5, recordatorio.getIdUsuario());
             //--------------------------------------
             //3. Hacer la ejecucion
             resultado = statement.execute();
@@ -57,7 +58,7 @@ public class RecordatorioDAO {
     public ArrayList listarTodo(){
        //1.Consulta
        ArrayList respuesta = new ArrayList();
-       String consulta ="SELECT * FROM Recordatorios";
+       String consulta ="SELECT IdRecordatorios, FechaRecordatorios, Hora, Descripcion FROM Recordatorios";
         try {
             //----------------------------
             //Statement
@@ -125,7 +126,7 @@ public class RecordatorioDAO {
     public RecordatorioVO buscar(int codigo) {
         RecordatorioVO recor = null;
         try {
-            String consulta = "SELECT * FROM Recordatorios WHERE IdRecordatorios = ?";
+            String consulta = "SELECT IdRecordatorios, FechaRecordatorios, Hora, Descripcion FROM Recordatorios WHERE IdRecordatorios = ?";
             PreparedStatement statement
                     = this.conexion.prepareStatement(consulta);
 

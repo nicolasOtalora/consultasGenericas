@@ -17,7 +17,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import vo.RecordatorioVO;
+import vo.UsuarioVO;
 
 /**
  *
@@ -42,17 +44,18 @@ public class RecordatorioServlet extends HttpServlet {
             this.recordatorio = new RecordatorioDAO();
             int id = Integer.parseInt(request.getParameter("id"));
             String fecha = request.getParameter("date");
-//            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-//            java.util.Date date = format.parse(fecha);
-//            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
             String hora = request.getParameter("hour");
             String descripcion = request.getParameter("descr");
+            HttpSession sesion = request.getSession();
+            UsuarioVO user = (UsuarioVO) sesion.getAttribute("user");
+            int idUsuario = user.getId();
             
             RecordatorioVO recor = new RecordatorioVO();
             recor.setIdRecordatorio(id);
             recor.setDescripcion(descripcion);
             recor.setFechaRecordatorio(fecha);
             recor.setHora(hora);
+            recor.setIdUsuario(idUsuario);
             
             this.recordatorio.insertar(recor);
             out.println("<!DOCTYPE html>");

@@ -18,6 +18,8 @@ public class RecordatorioVO {
     private String fechaRecordatorio;
     private String hora;
     private String descripcion;
+    private int idUsuario;
+
 
     public int getIdRecordatorio() {
         return idRecordatorio;
@@ -49,5 +51,13 @@ public class RecordatorioVO {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+    
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

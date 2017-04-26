@@ -116,6 +116,8 @@
             <script>alert("Cliente agregado");</script>
         <%}else if(request.getAttribute("mensaje") == "error"){%>
             <script>alert("No se pudo agregar");</script>
+        <%}else if(request.getAttribute("mensaje")=="numero"){%>
+            <script>alert("Asegurese de poner número en las casillas correspondientes");</script>
         <%}%>
         <div class="form">
             <table text-align="center">
@@ -125,13 +127,11 @@
                             <td>
                             NOMBRE: <input class="enjoy-input" type="text" name="nombre"><br><br>
                             CEDULA: <input class="enjoy-input" type="text" name="cedula"><br><br>
-                            DESTINO: <input class="enjoy-input" type="text" name="destino"><br><br>
                             ACOMPAÑANTES: <input class="enjoy-input" type="text" name="acompanantes">
                             </td>
                             <td>
                             EMAIL: <input class="enjoy-input" type="text" name="email" form="anadir"><br><br>
                             TELÉFONO: <input class="enjoy-input" type="text" name="telefono" form="anadir"><br><br>
-                            FECHA: <input class="enjoy-input" type="text" name="fecha" form="anadir"><br><br>
                             </td>   
                         </tr>
                         <tr>
