@@ -35,8 +35,9 @@
             
             .form{
                 text-align: center;
-                margin-left: 340px;
+                margin-left: 310px;
                 color: #ffffff;
+                font-weight: bold;
             }
             
             .borrar{
@@ -128,7 +129,7 @@
         <%}else if(request.getAttribute("mensaje") == "error"){%>
             <script>alert("No se pudo borrar");</script>
         <%}%>
-        <div class="subtitle"><h3>Ingrese la cedula del cliente:</h3></div><br>
+        <div class="subtitle"><h3>Ingrese la cedula del cliente:</h3></div>
         <div class="fForm">
             <table >
                 <tr>

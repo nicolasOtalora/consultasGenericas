@@ -142,7 +142,7 @@
                 color: #ffffff;
                 overflow: auto;
                 width: 900px;
-                margin-left: 400px;
+                margin-left: 100px;
             }
             
         </style>    
@@ -161,6 +161,7 @@
                 <%
                     //ClienteDAO cliente = ClienteDAO.getClienteDAO();
                     ArrayList registros = (ArrayList)request.getAttribute("registros");
+                    if (registros != null) {
                     for (int i = 0; i < registros.size(); i+=4) {
                 %>
                 <tr>
@@ -169,7 +170,7 @@
                     <td><%=registros.get(i+2)%></td>
                     <td><%=registros.get(i+3)%></td>
                 </tr>
-                <%  }   %>
+                <%  }   }%>
             </table>
         </div>
     </body>

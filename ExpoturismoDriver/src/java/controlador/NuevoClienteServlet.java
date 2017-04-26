@@ -38,8 +38,6 @@ public class NuevoClienteServlet extends HttpServlet {
             
             int cedula = Integer.parseInt(request.getParameter("cedula"));
             String nombre = request.getParameter("nombre");
-            String destino = request.getParameter("destino");
-            int acompanantes = Integer.parseInt(request.getParameter("acompanantes"));
             String email = request.getParameter("email");
             int telefono = Integer.parseInt(request.getParameter("telefono"));
             
@@ -52,7 +50,7 @@ public class NuevoClienteServlet extends HttpServlet {
             boolean inserta = this.cliente.insertar(cvo);
             
             if (inserta) {
-                request.setAttribute("mesanje", "error");
+                request.setAttribute("mensaje", "error");
             }else{
                 request.setAttribute("mensaje", "ok");
             }

@@ -12,7 +12,7 @@
         <title>JSP Page</title>
         <style>
             body {
-                background-image: url(Venecia.jpg);
+                background-image: url(Berlin.jpg);
                 background-repeat: no-repeat;
                 background-size: cover;
                 margin: 0;
@@ -29,12 +29,11 @@
             
             .form{
                 text-align: center;
-                margin-left: 310px;
+                margin-left: 280px;
                 font-weight: bold;
             }
             
             .button{
-                margin-left: 300px;
                 text-align: center;
             }
             
@@ -111,7 +110,7 @@
     </head>
     <body>
         <div class="logo"><image src="logo_pagina.png"/></div>
-        <div class="title"><h2>NUEVO CLIENTE:</h2></div>
+        <div class="title"><h2>NUEVO VIAJE:</h2></div>
         <%if(request.getAttribute("mensaje") == "ok"){%>
             <script>alert("Viaje agregado");</script>
         <%}else if(request.getAttribute("mensaje") == "error"){%>
@@ -132,19 +131,16 @@
                                 DESTINO: <input class="enjoy-input" type="text" name="destino"><br><br>
                             </td>
                             <td>
-                                ACOMPAÑANTES: <input class="enjoy-input" type="text" name="acompanantes">
-                                FECHA: <input class="enjoy-input" type="text" name="fecha" form="anadir"><br><br>
+                                ACOMPAÑANTES: <input class="enjoy-input" type="text" name="acompanantes"><br><br>
+                                FECHA: <input class="enjoy-input" type="date" name="fecha" form="anadir"><br><br>
                             </td>   
                         </tr>
-                        <tr>
-                            <td>
-                                <br><div class="button"><input class="btn" type="submit" value="AÑADIR CLIENTE" form="anadir"/></div>
-                            </td>
-                        </tr>
                     </form>
-                
             </table>
-        </div><br><br>
+        </div><br>
+        <div class="button">
+            <input class="btn" type="submit" value="AÑADIR CLIENTE" form="anadir"/>
+        </div>
         
     </body>
 </html>

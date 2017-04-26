@@ -131,7 +131,6 @@
         <div class="form">
             <table text-align="center">
                 <tr>
-                    <td>ID: <input type="text" name="id" form="newR"></td>
                     <td>
                         <form action="RecordatorioServlet" method="POST" id="newR">
                             <div class="description">DESCRIPCIÓN: <input style="width: 440px" class="enjoy-input" type="text" name="descr"></div><br>
@@ -142,10 +141,13 @@
             <table text-align="center">
                 <tr>
                     <td>
-                        FECHA: <input class="enjoy-input" type="text" name="date" form="newR"><br><br>
+                        ID: <input class="enjoy-input" type="text" name="id" form="newR" style="width:30px"><br><br>
                     </td>
                     <td>
-                        HORA: <input class="enjoy-input" type="text" name="hour" form="newR"><br><br
+                        FECHA: <input class="enjoy-input" type="date" name="date" form="newR"><br><br>
+                    </td>
+                    <td>
+                        HORA: <input class="enjoy-input" type="time" name="hour" form="newR"><br><br>
                     </td>
                 </tr>
             </table>

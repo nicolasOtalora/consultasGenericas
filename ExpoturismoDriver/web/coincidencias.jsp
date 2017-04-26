@@ -36,7 +36,7 @@
             
             .form{
                 text-align: center;
-                margin-left: 370px;
+                margin-left: 450px;
                 font-weight: bold;
             }
             
@@ -56,8 +56,14 @@
             .tabla {
                 font-family: arial, sans-serif;
                 border-collapse: collapse;
-                width: 60%;
-                margin-left: 290px;
+                width: 100%;
+            }
+            
+            .divT {
+                width: 70%;
+                text-align: center;
+                margin-left: 170px;
+                overflow: auto;
             }
 
             .tabla td, th {

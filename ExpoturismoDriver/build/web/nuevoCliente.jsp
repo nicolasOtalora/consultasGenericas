@@ -127,7 +127,6 @@
                             <td>
                             NOMBRE: <input class="enjoy-input" type="text" name="nombre"><br><br>
                             CEDULA: <input class="enjoy-input" type="text" name="cedula"><br><br>
-                            ACOMPAÑANTES: <input class="enjoy-input" type="text" name="acompanantes">
                             </td>
                             <td>
                             EMAIL: <input class="enjoy-input" type="text" name="email" form="anadir"><br><br>

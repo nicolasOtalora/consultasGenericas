@@ -29,7 +29,7 @@
             }
             
             .subtitle{
-                color: #000000;
+                color: #ffffff;
                 margin-left: 370px;
             }
             
@@ -142,10 +142,10 @@
                 <form action="EditarClienteServlet" method="GET" name="edit" id="edit">
                     <tr>
                         <td>
-                            <input type="text" name="busqueda" class="buscar">
+                            <input class="enjoy-input" type="text" name="busqueda" class="buscar">
                         </td>
                         <td>
-                            <input type="submit" value="Buscar" form="edit">
+                            <input class="btn" type="submit" value="Buscar" form="edit">
                             <%
                                 String cc = (String) request.getAttribute("cedula");
                                 String name = (String) request.getAttribute("nombre");
@@ -155,7 +155,7 @@
                         </td>
                         <td>
                             <div class="editar">
-                                <input type="submit" value="Editar" form="edit">
+                                <input class="btn" type="submit" value="Editar" form="edit">
                             </div>
                         </td>
                     </tr>
@@ -166,12 +166,12 @@
             <table text-align="center">
                 <tr>
                     <td>
-                        NOMBRE: <input type="text" name="nombre" form="edit"<%if (name != null) {%>value="<%=name%>"<%}%>><br><br>
-                        CEDULA: <input type="text" name="cedula" form="edit"<%if (cc != null) {%>value="<%=cc%>"<%}%>><br><br>
+                        NOMBRE: <input class="enjoy-input" type="text" name="nombre" form="edit"<%if (name != null) {%>value="<%=name%>"<%}%>><br><br>
+                        CEDULA: <input class="enjoy-input" type="text" name="cedula" form="edit"<%if (cc != null) {%>value="<%=cc%>"<%}%>><br><br>
                     </td>
                     <td style="padding-left: 50px">
-                        EMAIL: <input type="text" name="email" form="edit"<%if (correo != null) {%>value="<%=correo%>"<%}%>><br><br>
-                        TELÉFONO: <input type="text" name="telefono" form="edit"<%if (tel != null) {%>value="<%=tel%>"<%}%>><br><br>
+                        EMAIL: <input class="enjoy-input" type="text" name="email" form="edit"<%if (correo != null) {%>value="<%=correo%>"<%}%>><br><br>
+                        TELÉFONO: <input class="enjoy-input" type="text" name="telefono" form="edit"<%if (tel != null) {%>value="<%=tel%>"<%}%>><br><br>
                     </td>
                 </tr>
             </table>
