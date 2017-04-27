@@ -129,6 +129,11 @@
         <div class="logo"><image src="logo_pagina.png"/></div>
         <div class="title"><h2>NUEVO RECORDATORIO</h2></div><br>
         <div class="form">
+            <%if(request.getAttribute("mensaje")=="ok"){%>
+            <script>alert("yaaaaa");</script>    
+            <%}else if(request.getAttribute("mensaje")=="error"){%>
+            <script>alert("pailaaaa");</script>    
+            <%}%>
             <table text-align="center">
                 <tr>
                     <td>

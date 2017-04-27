@@ -49,7 +49,7 @@ public class RecordatorioServlet extends HttpServlet {
             HttpSession sesion = request.getSession();
             UsuarioVO user = (UsuarioVO) sesion.getAttribute("user");
             int idUsuario = user.getId();
-            
+            System.out.println("IDUSER: "+idUsuario);
             RecordatorioVO recor = new RecordatorioVO();
             recor.setIdRecordatorio(id);
             recor.setDescripcion(descripcion);
@@ -57,17 +57,16 @@ public class RecordatorioServlet extends HttpServlet {
             recor.setHora(hora);
             recor.setIdUsuario(idUsuario);
             
-            this.recordatorio.insertar(recor);
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Prueba</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Listos perros</h1>");
-            out.println("<p>Fecha recibida: "+fecha+"</p>");
-            out.println("</body>");
-            out.println("</html>");
+            boolean inserto = this.recordatorio.insertar(recor);
+            
+            if (!inserto) {
+                request.setAttribute("mensaje", "ok");
+            }else{
+            
+                request.setAttribute("mensaje", "error");
+            }
+            
+            request.getRequestDispatcher("nuevoRecordatorio.jsp").forward(request, response);
         }
     }
 

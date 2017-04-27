@@ -69,7 +69,7 @@ public class UsuarioDAO {
     public int borrar(int id, String user, String psw) {
 
         int i = 0;
-        if (psw.equals("nico")) {
+        if (psw.equals("pass")) {
             String query = "delete from Usuarios where IdUsuario = ? and Usuario = ?";
             try {
 

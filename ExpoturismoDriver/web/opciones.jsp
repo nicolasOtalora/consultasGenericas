@@ -64,8 +64,8 @@
 
 
             #header {
-                margin-left:600px;
-                width:500px;
+                margin-left:30px;
+                width:50px;
                 font-family:Arial;
             }
 
@@ -117,7 +117,9 @@
                 position:relative;
             }
 
-            
+            .contenedor{
+                margin-left: 230px;
+            }
 
 
         </style>
@@ -145,47 +147,58 @@
         
 
         <div class="h4"><h3>Escoge una de las siguientes opciones</h3></div><br><br>
-        <div>
+        <div class="contenedor">
             <table>
                 <tr>
                     <td>
-                        <form target="_blank" action="nuevoCliente.jsp">
-                            <input class="btn" type="submit" value="Nuevo Cliente" style="margin-left: 200px">
+                        <form action="nuevoCliente.jsp">
+                            <input class="btn" type="submit" value="Nuevo Cliente">
                         </form>
                     </td>
 
                     <td> 
-                        <form target="_blank" action="buscarCliente.jsp">
+                        <form action="buscarCliente.jsp">
                             <input class="btn" type="submit" value="Buscar Cliente">
                         </form>
                     </td>
 
                     <td>
-                        <form target="_blank" action="editarCliente.jsp">
+                        <form action="editarCliente.jsp">
                             <input class="btn" type="submit" value="Editar Cliente">
                         </form>
                     </td>
 
                     <td>
-                        <form target="_blank" action="nuevoUsuario.jsp">
+                        <form action="nuevoUsuario.jsp">
                             <input class="btn" type="submit" value="Nuevo Usuario">
                         </form>
                     </td>
 
                     <td>
-                        <form target="_blank" action="nuevoRecordatorio.jsp">
+                        <form action="nuevoRecordatorio.jsp">
                             <input class="btn" type="submit" value="Nuevo Recordatorio">
                         </form>
                     </td>
-
+                </tr>
+                <tr>
                     <td>
-                        <form target="_blank" action="programas.jsp">
-                            <input class="btn" type="submit" value="Programas">
+                        <form action="nuevoViaje.jsp">
+                            <input class="btn" type="submit" value="Nuevo Viaje">
                         </form>
                     </td>
                     <td>
-                        <form target="_blank" action="borrarUsuario.jsp">
+                        <form action="borrarUsuario.jsp">
                             <input class="btn" type="submit" value="Borrar Usuario">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="buscarRecordatorios.jsp">
+                            <input class="btn" type="submit" value="Buscar Recordatorios">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="coincidencias.jsp">
+                            <input class="btn" type="submit" value="Viajeros Solos">
                         </form>
                     </td>
                 </tr>
