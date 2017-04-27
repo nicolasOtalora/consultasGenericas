@@ -162,7 +162,7 @@
             <script>alert("No se encontraron coincidencias");</script>
         <%}%>
         <div class="form">
-            <form action="ServletProgramas" method="POST" id="program">
+            <form action="CoincidenciasServlet" method="get" id="program">
             <table text-align="center">
                 <tr>
                     <td>
