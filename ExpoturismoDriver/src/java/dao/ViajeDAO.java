@@ -76,12 +76,12 @@ public class ViajeDAO {
 
         preparedStmt.setInt(1, viaje.getCedulaCliente());
         preparedStmt.setString(2, viaje.getDestino());
-        preparedStmt.setInt(3, viaje.getAcompanantes());
-        preparedStmt.setString(4, viaje.getFecha());
+        preparedStmt.setString(3, viaje.getFecha());
+        preparedStmt.setInt(4, viaje.getAcompanantes());
         
         res = preparedStmt.execute();
         }catch(SQLException e){
-            res = true;
+            e.printStackTrace();
         }
         return res;
     }
@@ -151,7 +151,7 @@ public class ViajeDAO {
     
     public ArrayList <ViajeVO> getMatch(String destino){
         ArrayList <ViajeVO> viajes = new ArrayList();
-        String query = "select * from Viajes where Destino = "+destino+" and CantidadPersonas = 0";
+        String query = "select * from Viajes where Destino = '"+destino+"' and CantidadPersonas = 0";
         //Statement
             Statement statement;
         try {
@@ -177,5 +177,32 @@ public class ViajeDAO {
             Logger.getLogger(ViajeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return viajes;
+    }
+    
+    public ArrayList personasPorDestino() {
+        ArrayList registros = null;
+
+        String query = "SELECT Destino, count(*) AS total FROM Viajes JOIN Clientes USING (Cedula) GROUP BY Destino";
+
+        Statement st;
+        try {
+            st = this.conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                if (registros == null) {
+                    registros = new ArrayList();
+                }
+
+                String destinos = rs.getString("Destino");
+                registros.add(destinos);
+                int contador = rs.getInt("total");
+                registros.add(contador);
+            }
+            st.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ViajeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return registros;
     }
 }

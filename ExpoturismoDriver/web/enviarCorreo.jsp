@@ -1,6 +1,6 @@
 <%-- 
-    Document   : nuevoCliente
-    Created on : 11/03/2017, 06:40:23 PM
+    Document   : buscarCliente
+    Created on : 11/03/2017, 08:01:07 PM
     Author     : PC USUARIO
 --%>
 
@@ -12,31 +12,47 @@
         <title>JSP Page</title>
         <style>
             body {
-                background-image: url(Berlin.jpg);
+                background-image: url(Roma.jpg);
                 background-repeat: no-repeat;
                 background-size: cover;
                 margin: 0;
                 padding: 0;
             }
-            
+
             .logo{
-                text-align: left;
+                text-align: right;
             }
-            
+
             .title{
                 text-align: center;
+                color: #ffffff;
             }
-            
+
+            .subtitle{
+                color: #000000;
+                margin-left: 370px;
+            }
+
             .form{
                 text-align: center;
-                margin-left: 280px;
+                margin-left: 150px;
                 font-weight: bold;
+                color: #ffffff;
             }
-            
-            .button{
+
+            .editar{
                 text-align: center;
             }
-            
+
+            .buscar{
+                width: 490px;
+            }
+
+            .confC{
+                margin-left: 90px;
+                padding-left: 50px;
+            }
+
             .btn {
                 background: #3498db;
                 background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
@@ -64,7 +80,7 @@
                 background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
                 text-decoration: none;
             }
-            
+
             .enjoy-input {
                 display: inline-block;
                 -webkit-box-sizing: content-box;
@@ -106,41 +122,33 @@
                 -o-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
                 transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
             }
-        </style>
+        </style>    
     </head>
     <body>
-        <div class="logo"><a href="opciones.jsp"><image src="logo_pagina.png"/></a></div>
-        <div class="title"><h2>NUEVO VIAJE:</h2></div>
-        <%if(request.getAttribute("mensaje") == "ok"){%>
-            <script>alert("Viaje agregado");</script>
-        <%}else if(request.getAttribute("mensaje") == "error"){%>
-            <script>alert("No se pudo agregar");</script>
-        <%}else if(request.getAttribute("existe") == "error"){%>
-            <script>alert("El cliente no existe");</script>
-        <%}
-           if(request.getAttribute("match") == "si"){%>
-            <script>alert("Tienes un match para tu destino <3 ;)");</script>
-        <%}%>
+        <div class="logo"><image src="logo_pagina.png"/></div>
+        <div class="title"><h2>ENVIAR CORREO</h2></div><br>
         <div class="form">
-            <table text-align="center">
-                
-                    <form action="nuevoViajeServlet" method="GET" id="anadir">
-                        <tr>
-                            <td>
-                                CEDULA CLIENTE: <input class="enjoy-input" type="text" name="cedula"><br><br>
-                                DESTINO: <input class="enjoy-input" type="text" name="destino"><br><br>
-                            </td>
-                            <td>
-                                ACOMPAÑANTES: <input class="enjoy-input" type="text" name="acompanantes"><br><br>
-                                FECHA: <input class="enjoy-input" type="date" name="fecha" form="anadir"><br><br>
-                            </td>   
-                        </tr>
-                    </form>
-            </table>
-        </div><br>
-        <div class="button">
-            <input class="btn" type="submit" value="AÑADIR CLIENTE" form="anadir"/>
+            <form action="CorreoServlet" method="POST" id="enviarC">
+                USUARIO: <input class="enjoy-input" type="text" name="usuario"><br><br>
+                CONTRASEÑA: <input class="enjoy-input" type="password" name="password"><br><br>
+                USUARIO DESTINATARIO: <input class="enjoy-input" type="text" name="destinatario"><br><br>
+                ASUNTO: <input class="enjoy-input" type="text" name="asunto"><br><br>
+                MENSAJE: <textarea class="enjoy-input" name="mensaje" form="mensaje"></textarea><br><br>
+            </form>
+        </div><br><br>
+        <div class="editar">
+            <input class="btn" type="submit" value="Enviar Mensaje" form="enviarC">
         </div>
-        
+
+        <%if (request.getAttribute("Mensaje") == "ok") {%>
+        <script>alert("Usuario borrado");</script>
+        <%}%>
+
+        <%if (request.getAttribute("Mensaje") == "no existe") {%>
+        <script>alert("Error: El usuario no se encuentra en los registros.");</script>
+        <%}%>
+        <%if (request.getAttribute("Mensaje") == "contraseña incorrecta") {%>
+        <script>alert("Error: Contraseña de administrador incorrecta.");</script>
+        <%}%>
     </body>
 </html>

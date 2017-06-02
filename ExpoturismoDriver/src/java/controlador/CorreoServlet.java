@@ -5,21 +5,25 @@
  */
 package controlador;
 
-import dao.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import vo.ClienteVO;
 
 /**
  *
  * @author ayoro
  */
-public class NuevoClienteServlet extends HttpServlet {
-    private ClienteDAO cliente;
+public class CorreoServlet extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,44 +38,44 @@ public class NuevoClienteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            this.cliente = new ClienteDAO();
-            int cedula = 0;
             try {
-                cedula = Integer.parseInt(request.getParameter("cedula"));
-            } catch (Exception e) {
-                request.setAttribute("mensaje", "numero");
-                request.getRequestDispatcher("nuevoCliente.jsp").forward(request, response);
-            }
-            String nombre = request.getParameter("nombre");
-            String email = request.getParameter("email");
-            int telefono = 0;
-            try {
-                telefono = Integer.parseInt(request.getParameter("telefono"));
-            } catch (Exception e) {
-                request.setAttribute("mensaje", "numero");
-                request.getRequestDispatcher("nuevoCliente.jsp").forward(request, response);
-            }
-            
-            if (cedula != 0 && telefono != 0) {
                 
-                ClienteVO cvo = new ClienteVO();
-                cvo.setCedula(cedula);
-                cvo.setNombre(nombre);
-                cvo.setEmail(email);
-                cvo.setTelefono(telefono);
+                String usuario = request.getParameter("usuario");
+                String pass = request.getParameter("password");
+                String destinatario = request.getParameter("destinatario");
+                String asunto = request.getParameter("asunto");
+                String mensaje = request.getParameter("mensaje");
 
-                boolean inserta = this.cliente.insertar(cvo);
+                // Propiedades de la conexión, configuracion del servicio smtp.
+                Properties props = new Properties();
+                props.setProperty("mail.smtp.host", "smtp.gmail.com");
+                props.setProperty("mail.smtp.starttls.enable", "true");
+                props.setProperty("mail.smtp.port", "587");
+                props.setProperty("mail.smtp.user", usuario+"@gmail.com");
+                props.setProperty("mail.smtp.auth", "true");
 
-                if (inserta) {
-                    request.setAttribute("mensaje", "error");
-                }else{
-                    request.setAttribute("mensaje", "ok");
-                }
-            }else{
-                request.setAttribute("mensaje", "numero");
+                // Preparamos la sesion
+                Session session = Session.getDefaultInstance(props);
+
+                // Construimos el mensaje
+                MimeMessage message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(usuario+"@gmail.com"));
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario+"@gmail.com"));
+                message.setSubject(asunto);
+                message.setText(mensaje);
+
+                // Lo enviamos.
+                Transport t = session.getTransport("smtp");
+                t.connect(usuario+"@gmail.com", pass);
+                t.sendMessage(message, message.getAllRecipients());
+                System.out.println("ok");
+                // Cierre.
+                t.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             
-            request.getRequestDispatcher("nuevoCliente.jsp").forward(request, response);
+            
         }
     }
 

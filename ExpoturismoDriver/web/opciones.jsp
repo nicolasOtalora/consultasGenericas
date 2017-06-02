@@ -179,6 +179,11 @@
                             <input class="btn" type="submit" value="Nuevo Recordatorio">
                         </form>
                     </td>
+                    <td>
+                        <form action="enviarCorreo.jsp">
+                            <input class="btn" type="submit" value="Enviar Mail">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -199,6 +204,16 @@
                     <td>
                         <form action="coincidencias.jsp">
                             <input class="btn" type="submit" value="Viajeros Solos">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="verGrafico.jsp">
+                            <input class="btn" type="submit" value="Ver gráfico">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="PDFServlet">
+                            <input class="btn" type="submit" value="Crear PDF">
                         </form>
                     </td>
                 </tr>
