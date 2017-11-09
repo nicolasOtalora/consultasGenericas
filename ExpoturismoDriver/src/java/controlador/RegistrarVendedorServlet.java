@@ -5,21 +5,27 @@
  */
 package controlador;
 
-import dao.ClienteDAO;
+import dao.VendedorDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import vo.Vendedores;
 
 /**
  *
- * @author ayoro
+ * @author Nicolas
  */
-public class ListarClienteServlet extends HttpServlet {
-    private ClienteDAO cliente;
+public class RegistrarVendedorServlet extends HttpServlet {
+
+    private VendedorDAO dao;
+    private Vendedores vo;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,15 +37,7 @@ public class ListarClienteServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            this.cliente = new ClienteDAO();
-            ArrayList registros = this.cliente.listarTodo();
-            
-            request.setAttribute("registros", registros);
-            request.getRequestDispatcher("listarClientes.jsp").forward(request, response);
-        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -54,7 +52,17 @@ public class ListarClienteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            System.out.println("Entre al geeeeeeeeeeeeeeeeeet");
+            dao = new VendedorDAO();
+            String atr = request.getParameter("nombAtr");
+            String valor = request.getParameter("");
+            dao.listar(atr, valor);
+
+        } catch (Exception e) {
+
+        }
     }
 
     /**
@@ -68,7 +76,22 @@ public class ListarClienteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            System.out.println("Entre al post");
+            System.out.println("Entre al geeeeeeeeeeeeeeeeeet");
+            dao = new VendedorDAO();
+            vo = new Vendedores();
+            vo.setNombre(request.getParameter("nombre"));
+            vo.setContraseña(request.getParameter("correo"));
+            dao.insertar(vo);
+
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(RegistrarVendedorServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(RegistrarVendedorServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**

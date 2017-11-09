@@ -76,6 +76,10 @@
         <servlet-name>GraficoServlet</servlet-name>
         <servlet-class>controlador.GraficoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegistrarVendedorServlet</servlet-name>
+        <servlet-class>controlador.RegistrarVendedorServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/IndexServlet</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>GraficoServlet</servlet-name>
         <url-pattern>/GraficoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarVendedorServlet</servlet-name>
+        <url-pattern>/RegistrarVendedorServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
