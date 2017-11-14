@@ -23,18 +23,11 @@ public class VendedorDAO {
         resultado = tx.insertar(vendedor);
         
         
-        try {
-            tx.createStatement(vendedor);
-        } catch (IllegalArgumentException ex) {
-            Logger.getLogger(VendedorDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(VendedorDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return resultado;
     }
     public ArrayList<Vendedores> listar (String nombre, String valor){
         
-        ArrayList<Vendedores> vendedores = tx.select(tx, nombre,valor);
+        ArrayList<Vendedores> vendedores = tx.select(nombre,valor);
         
         return vendedores;
         

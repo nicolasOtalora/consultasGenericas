@@ -5,7 +5,7 @@ public class Vendedores {
     
     
     public String nombre;
-    public String password;
+    public String contrasena;
 
     public String getNombre() {
         return nombre;
@@ -16,11 +16,11 @@ public class Vendedores {
     }
 
     public String getPassword() {
-        return password;
+        return contrasena;
     }
 
     public void setContraseña(String contraseña) {
-        this.password = contraseña;
+        this.contrasena = contraseña;
     }
     
     

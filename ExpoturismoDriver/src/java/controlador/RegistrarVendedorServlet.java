@@ -8,6 +8,7 @@ package controlador;
 import dao.VendedorDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -25,6 +26,7 @@ public class RegistrarVendedorServlet extends HttpServlet {
 
     private VendedorDAO dao;
     private Vendedores vo;
+    private ArrayList vendedores;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,8 +59,10 @@ public class RegistrarVendedorServlet extends HttpServlet {
             System.out.println("Entre al geeeeeeeeeeeeeeeeeet");
             dao = new VendedorDAO();
             String atr = request.getParameter("nombAtr");
-            String valor = request.getParameter("");
-            dao.listar(atr, valor);
+            String valor = request.getParameter("valor");
+            vendedores = dao.listar(atr, valor);
+            request.setAttribute("vendedores", vendedores);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
 
         } catch (Exception e) {
 
@@ -83,8 +87,9 @@ public class RegistrarVendedorServlet extends HttpServlet {
             dao = new VendedorDAO();
             vo = new Vendedores();
             vo.setNombre(request.getParameter("nombre"));
-            vo.setContraseña(request.getParameter("correo"));
+            vo.setContraseña(request.getParameter("pass"));
             dao.insertar(vo);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
 
         } catch (IllegalArgumentException ex) {
             Logger.getLogger(RegistrarVendedorServlet.class.getName()).log(Level.SEVERE, null, ex);
